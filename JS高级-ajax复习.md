@@ -241,3 +241,51 @@ split('|')分隔符，把字符串变成数组
 slice(从第几个开始，删除到第几个结束)
 
 join('')数组变成字符串
+
+---
+
+## ajax原理
+
+步骤：
+
+1.创建xhr对象
+
+2.调用xhr.open()函数
+
+3.调用xhr.send()函数
+
+4.监听onreadystatechange事件
+
+发post请求时要在send前，open后写 xhr.setRequestHeader('Content-Type','applicition/x-www-form-urlencoded')
+
+---
+
+## JSON的转换格式
+
+```js
+//把JSON格式的字符串转换成JS对象 反序列化函数
+JSON.parse()
+
+//把JS对象转换成JSON格式的字符串 序列化函数
+JSON.stringify()
+```
+
+### 注意事项
+
+必须要是字符串，数字型，null，布尔，数组，对象，且必须用双引号包裹，里面不能写注释
+
+### 作用
+
+在计算机与网络之间存储和传输数据
+
+---
+
+## XML新特性
+
+1.可以设置HTTP请求的时限
+
+2.可以使用FormData对象管理表单数据
+
+3.可以上传文件
+
+4.可以获得数据传输的进度信息

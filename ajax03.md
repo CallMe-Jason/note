@@ -111,6 +111,11 @@ JSON.stringify()
 ```js
 //将最长的等待时间设置为3秒，当超过了3秒就认为失败了
 xhr.timeout = 3000
+
+//当请求超时时会触发事件
+xhr.ontimeout = funciton(){
+  
+}
 ```
 
 ### 2.可以使用FormData对象管理表单数据
