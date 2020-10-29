@@ -189,10 +189,99 @@ xhr.onreadystatechange = function (){
 
 ### 4.可以获得数据传输的进度信息
 
-
+```js
+//xhr的upload里的onrprogress监听的是上传的进度
+var xhr = new XMLHttpRequset()
+xhr.upload.onprogress = function (e){
+  if (e.lengthComputable){
+    //e.loaded已上传了多少
+    //e.total需要上传的总值
+    var percentComplete = Math.ceil((e.loaded/e.total) * 100)
+    $('#percent').attr('style','width:' + 'procentComplete' + '%').html('procentComplete' + '%')
+  }
+}
+//上传成功进度条
+xhr.upload.onload = function (){
+  	$('progress').removeClass().addClass('progress-bar progress-bar -success')
+}
+```
 
 ---
 
+## JQuery上传文件方法
 
+```js
+  $(function(){
+            $('#btn').on('click',function(){
+                var files = $('#file1')[0].files
+                if (files.length <= 0) {
+                    return alert('选择文件后上传')
 
-### 
+                }
+                var fd = new FormData()
+                fd.append('avatar',files[0])
+                $.ajax({
+                    type : 'post',
+                    url : 'http://www.liulongbin.top:3006/api/upload/avatar',
+                    data : fd,
+                    processData : false,
+                    contentType : false,
+                    success : function(res) {
+                        console.log(res);
+                        $(document).ajaxStart(function(){//ajaxStart会监听到所有的ajax事件
+                            $('#loading').show()
+                        })
+                        $(document).ajaxStop(function(){//ajaxStart会监听到所有的ajax事件
+                            $('#loading').hide()
+                        })
+                    }
+
+                })
+            })
+        })
+```
+
+---
+
+## axios
+
+是专注于网络数据请求的库，相比原生的XMLHttpRequest对象，axios简单易用，相比于JQuery更小
+
+---
+
+## 使用
+
+### 发送get请求
+
+```js
+axios.get(url,{params:{name:'zs',age:18}})
+```
+
+axios.get()
+
+参数1:url
+
+参数2:参数对象,{params:{name:'zs',age:18}}
+
+### 发送post请求
+
+```js
+//后面.then可以接收
+axios.post(url,数据).then(function(res){
+  console.log(res.data)//服务器传回来的数据
+})
+```
+
+### 直接使用axios发起请求
+
+```js
+axios({
+  method : '类型',
+  url : '接口地址',
+  data: {数据}
+  parames : {}//如果是post则使用data
+}).then(callback)
+```
+
+---
+
