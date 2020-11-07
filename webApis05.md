@@ -30,7 +30,7 @@ window.confirm('字符串')
 
 ## location对象
 
-![location对象的属性](/笔记截图/location对象的属性.png)
+![location对象的属性](笔记截图/location对象的属性.png)
 
 ```js
 console.log(location.href)
