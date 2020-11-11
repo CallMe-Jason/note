@@ -234,5 +234,79 @@ app.use(cors())
 
 ---
 
+## CORS响应头
 
+```js
+//*表示任何的都可以访问，要限制可以设置
+res.setHeader('Access-Control-Allow-Origin','*')
+
+
+//如果发送了额外的请求头信息，则需要再服务器端通过Access-Control-Allow-Headers对额外的请求头进行声明，否则会失败
+res.setHeader('Access-Control-Allow-Headers','Content-Type,X-Custom-Header')	 
+
+//默认情况下，CORS仅支持客户端发起GET,POST,HEAD请求，如果希望通过PUT，DELETE等方式请求服务器的资源，则需要在服务器端，通过Access-Control-Allow-Methods来指明实际请求所允许使用的HTTP方法
+res.setHeader('Access-Control-Allow-Methods','POST,GET,DELETE,HEAD')
+```
+
+---
+
+## CORS请求的分类
+
+### 简单请求
+
+![简单请求](笔记截图/简单请求.png)
+
+### 2.预检请求
+
+![预检请求](笔记截图/预检请求.png)
+
+## 简单请求和预检请求的区别
+
+简单请求只会发送一次请求
+
+预检请求会发两次，第二次为真正的请求
+
+---
+
+## JSONP的概念和特点 
+
+1.不属于真正的Ajax请求
+
+2.只能发送get请求
+
+### 注意事项：
+
+如果已经配置了CORS跨域资源共享，那JSONP必须在其之前配置
+
+```js
+app.get('/api/jsonp',(req,res)=>{
+//定义JSONP具体的接口
+  //1.获取客户端发送过来的回调函数的名字
+  const funcName = req.query.callback
+ 	//2.得到要通过JSONP形式发送给客户端的数据
+  const data = { name : 'zs',age : 22}
+  //3.拼接出一个函数调用的字符串
+  const scriptStr = `${funcName}($JSON.stringify(data)})`
+  //4.把拼接出的字符串响应给<script>标签进行解析
+  res.send(scriptStr)
+})
+
+
+
+//为JSONP按钮绑定点击事件处理函数
+$('#btnJSONP').on('click',function(){
+  $.ajax({
+    type : 'get',
+    url : 'http://127.0.0.1/api/jsonp',
+    dataType : 'jsonp',
+    success : res=>{
+console.log(res)
+    }
+  })
+})
+```
+
+
+
+---
 
