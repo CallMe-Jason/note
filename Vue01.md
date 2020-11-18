@@ -103,8 +103,181 @@ var vm = new Vue({
 <button v-on:click='say()'>Hello</button>
 ```
 
+#### 事件函数参数传递
+
+```js
+//$event是固定写法
+<button v-on:click='say(参数1，参数2，$event)'>Hello</button>
+//1.如果事件直接绑定函数名称那么默认会传递事件对象作为事件函数的第一个参数
+//2.如果事件绑定函数调用，那么事件对象必须作为最后一个参数进行传递，并且事件对象的名称必须是固定的$event
+```
+
+#### 事件修饰符
+
+```js
+//.stop阻止冒泡
+<a v-on:click.stop = 'handle1'></a>
+
+//.prevent阻止默认事件
+<a href='http://www.baidu.com' v-on:click.prevent='handle2'></a>
+
+//.self只有自己被点击的时候才会触发
+<a v-on:click.self = 'handle1'></a>
+
+//.prevent.self会阻止默认行为（无论是自己点击还是子元素被点击冒泡上来的都会被阻止
+<a v-on:click.prevent.self = 'handle1'></a>
+
+//.self.prevent会阻止默认行为（阻止的只是自己点击的默认行为）
+<a v-on:click.self.prevent = 'handle1'></a>
+```
+
+#### 按键修饰符
+
+```js
+//.enter回车键
+<input type='text' v-on:keyup.enter='handleSubmit'></input>
+
+//.delete删除键
+<input type='text' v-on:keyup.delete='handleDelete'></input>
+```
+
+#### 自定义按键修饰符
+
+```js
+//自定义按键修饰符名字是自定义的，但对应的值必须是按键对应的kecode值
+<input type='text' v-on:keyup.a='handle' v-model = 'info'>
+  
+Vue.config.keyCodes.aaa = 65
+//不支持驼峰写法	
+```
+
 ### 4.属性绑定
+
+```js
+//v-bind指令用法
+<a v-bind:herf='url'>跳转</a>
+//简写
+<a href='url'>跳转</a>
+
+<img v-bind:src='imagesSrc'>
+//简写
+<img :src = 'imagesSrc'
+```
+
+##### 绑定对象
+
+```js
+<ul v-bind:class = '{textColor : isColor,textSize : isSize}'
+data : {
+isColor : true
+}
+```
+
+##### 绑定数组
+
+```js
+<style>
+  .textColor{
+    color : #000,
+    background-color:#eef
+  }
+</style>
+<ul class="box" :class="[classA, classB]">
+ data : {
+classA : 'textColor'
+```
+
+
 
 ### 5.样式绑定
 
+```js
+<div v-bind:style='{color : activeColor,fontSize : fontSize}'>heelo</style>
+```
+
+
+
 ### 6.分支循环结构
+
+v-if多个元素通过条件判断展示或者隐藏某个元素，或者多个元素进行两个视图之间的切换
+
+```html
+<div id="app">
+    <!-- 判断是否加载，如果为真，就加载，否则不加载 -->
+    <span v-if="flag">
+        如果flag为true则显示,false不显示!
+    </span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        }
+    });
+</script>
+```
+
+```html
+<div id="app">
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <!-- v-else-if 紧跟在 v-if 或 v-else-if 之后，表示 v-if 条件不成立时执行 -->
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <!-- v-else 紧跟在 v-if或 v-else-if 之后 -->
+    <div v-else>
+        Not A/B/C
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            type: 'C'
+        }
+    });
+</script>
+```
+
+v-show和v-if的区别：
+
+v-show本质就是标签display设置为none,控制隐藏，v-show只编译一次
+
+v-if是动态的向DOM树内添加或者删除DOM元素，v-if切换有一个局部编译/卸载的过程
+
+###### 循环结构v-for
+
+```js
+<div id="app">
+    <ul>
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ]
+        }
+    });
+</script>
+#不推荐同时使用v-if和v-for
+```
+
+key的作用，每个节点做一个唯一的标识，为了高效的更新虚拟DOM
+
