@@ -280,13 +280,13 @@ this.$router.push('/register');
 } } }
 
 // 字符串(路径名称)
-$router.push('/home')
+router.push('/home')
 // 对象
-$router.push({ path: '/home' })
+router.push({ path: '/home' })
 // 命名的路由(传递参数)
-$router.push({ name: '/user', params: { userId: 123 }})
+router.push({ name: '/user', params: { userId: 123 }})
 // 带查询参数，变成 /register?uname=lisi
-$router.push({ path: '/register', query: { uname: 'lisi' }})
+router.push({ path: '/register', query: { uname: 'lisi' }})
 
 #注意 this.$route当路由规则匹配的时候，可以获取信息，this.$router是用来跳转的
 ```
