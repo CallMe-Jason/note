@@ -9,7 +9,7 @@
 ## 全局组件注册语法
 
 ```js
-//注册一个名为button-counter的新组件
+//注册一个名为button-       
 Vue.component('button-counter',{
   data : function(){//必须是个函数
 		return {//返回的必须是个对象
@@ -138,6 +138,7 @@ Vue.component('menu-item',{
 ```js
 <button v-on:click='$emit("enlarge-text"，0.1)'>扩大字体</button>
 //在$emit()中第二个参数为携带的参数
+#携带参数时父组件的方法是通过$event接收子组件的参数的
 ```
 
 4.父组件监听子组件的事件

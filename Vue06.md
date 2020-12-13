@@ -382,5 +382,72 @@ const vm = new Vue({
 }
 ```
 
+---
 
+## Vue脚手架的基本用法
+
+Vue脚手架用于快速生成vue项目基础架构，其官网为http://cli.vuejs.org/zh/
+
+```js
+1.安装3.X版本的Vue脚手架
+npm i -g @vue/cli
+```
+
+---
+
+## 创建项目
+
+```js
+1.基于交互式命令行的方式创建新版vue项目
+vue create my-projetc
+2.基于图形化界面的方式创建新版vue项目
+vue ui
+3.基于2.X的旧模版，创建Vue项目
+npm i -g @vue/cli-init
+vue init webpack my-project
+```
+
+---
+
+## 自定义配置
+
+```js
+//根目录下创建vue.config.js写如下代码
+module.exports = {
+    devServer: {
+        open: true,//自动打开浏览器
+        port: 8878
+    }
+}
+```
+
+---
+
+## Element UI的基本使用
+
+为开发者，设计师和产品经理准备的基于Vue2.0的桌面端组件库 官网地址为:http://element-cn.eleme.io/#/zh-CN 可以省去美化样式的时间
+
+```js
+//基于命令行方式手动安装
+1.安装依赖包 npm i element-ui -S
+2.导入Element-UI相关资源
+//导入组件库
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+```
+
+---
+
+## 基于图形化界面自动安装
+
+```js
+1.运行vue.ui命令，打开图形化界面
+2.通过vue项目管理器，进入具体的项目配置面板
+3.点击插件->添加插件，进入插件查询面板
+4.搜索vue-cli-plugin-element并安装
+5.配置插件，实现按需导入，从而减少打包后的项目的体积
+```
+
+---
 

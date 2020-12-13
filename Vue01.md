@@ -157,7 +157,7 @@ Vue.config.keyCodes.aaa = 65
 //v-bind指令用法
 <a v-bind:herf='url'>跳转</a>
 //简写
-<a href='url'>跳转</a>
+<a :href='url'>跳转</a>
 
 <img v-bind:src='imagesSrc'>
 //简写
@@ -192,7 +192,7 @@ classA : 'textColor'
 ### 5.样式绑定
 
 ```js
-<div v-bind:style='{color : activeColor,fontSize : fontSize}'>heelo</style>
+<div v-bind:style='{color : activeColor,fontSize : fontSize}'>hello</style>
 ```
 
 
