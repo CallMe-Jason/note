@@ -210,7 +210,7 @@ template: '<div>用户ID：{{ id }}</div>' // 使用路由参数
 }
 
 #传递对象
-const router = new VueRouter({
+const router = new  x({
 routes: [
 // 如果 props 是一个对象，它会被按原样设置为组件属性
 { path: '/user/:id', component: User, props: { uname: 'lisi', age: 12 }} ]

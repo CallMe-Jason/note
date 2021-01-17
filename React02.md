@@ -202,7 +202,7 @@ ReactDOM.render(
 
 ```jsx
 // 允许在创建组件的时候，就指定props的类型，格式等
-// 1.安装包 porp-types
+// 1.安装包 prop-types
 npm i prop-types
 
 // 2.导入包
