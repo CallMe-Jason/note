@@ -54,7 +54,7 @@ export default{//默认导出
 //默认导入语法import接收名称from'模块标识符'
 import m1 from './m1'
 
-#注意：在每个模块中只允许使用唯一的一次export,否则会报错
+#注意：在每个模块中只允许使用唯一的一次export default,否则会报错
 ```
 
 ### 按需导出与按需导入
