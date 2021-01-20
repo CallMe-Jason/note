@@ -223,7 +223,7 @@ this.props.history.go(-1)
 ## 精确匹配
 
 ```jsx
-// 给Route组件添加exact属性，让其变为情却匹配模式
+// 给Route组件添加exact属性，让其变为精确匹配模式
 // 只有当path和pathname完全匹配时才会展示该路由
 <Route exact path="/" component=... />
 
